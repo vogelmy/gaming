@@ -1,7 +1,7 @@
 @extends('template')
 @section('content')
 
-<h1 class="mb-5">Shop page</h1>
+<h1 class="mb-5">Category page</h1>
 @if($categories->isEmpty())
 <h2>We don't have anything to offer.</h2>
 @endif
