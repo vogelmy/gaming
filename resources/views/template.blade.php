@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
     </head>
     <body>
-        <header>
+        <header class="mb-5">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container">
                     <a class="navbar-brand" href="{{url('/')}}"><img class="nav-logo" src="{{asset('images/gaming-logo.png')}}"></a>
@@ -40,7 +40,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Shop</a>
+                                <a class="nav-link" href="{{url('shop')}}">Shop</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
