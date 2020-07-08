@@ -10,10 +10,10 @@
     <div class="col-md-4 mb-5">
         <div class="pro-container">
             <h3>{{strtoupper($product->name)}}</h3>
-            <a class="stretched-link" href=''><img src="{{asset('images/products/' . $product->image)}}"></a>
+            <a href='{{url()->current() . '/' . $product->slug}}'><img src="{{asset('images/products/' . $product->image)}}"></a>
             <h4>&#8362;{{$product->price}}</h4>
             <a class="btn btn-primary" href="">ADD TO CART</a>
-            <a class="btn btn-info" href="">READ MORE</a>
+            <a class="btn btn-info" href="{{url()->current() . '/' . $product->slug}}">READ MORE</a>
         </div>
     </div>
     @endforeach

@@ -11,12 +11,10 @@ class Category extends Model {
     }
 
     public static function getCategory($slug) {
-
-        return self::where('slug', $slug)->firstOrFail();
+        return self::where('slug', $slug)->firstOrFail('id', 'slug');
     }
     
     public static function getCategories() {
-
         return self::orderBy('slug')->get();
     }
 
