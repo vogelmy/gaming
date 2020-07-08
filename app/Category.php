@@ -9,7 +9,11 @@ class Category extends Model {
     public function products(){
         return $this->hasMany('App\Product');
     }
-    
+
+    public static function getCategory($slug) {
+
+        return self::where('slug', $slug)->firstOrFail();
+    }
     
     public static function getCategories() {
 
