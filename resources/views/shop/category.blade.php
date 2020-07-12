@@ -12,7 +12,7 @@
             <h3>{{strtoupper($product->name)}}</h3>
             <a href='{{url()->current() . '/' . $product->slug}}'><img src="{{asset('images/products/' . $product->image)}}"></a>
             <h4>&#8362;{{$product->price}}</h4>
-            <a class="btn btn-primary" href="">ADD TO CART</a>
+            <a href="{{url('add-to-cart/' . $product->id)}}" class="add-to-cart btn btn-primary" >ADD TO CART</a>
             <a class="btn btn-info" href="{{url()->current() . '/' . $product->slug}}">READ MORE</a>
         </div>
     </div>

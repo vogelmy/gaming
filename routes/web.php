@@ -19,3 +19,4 @@ Route::view('about', 'pages.about');
 Route::get('shop', 'ShopController@displayShop');
 Route::get('shop/{category}', 'ShopController@displayCategory');
 Route::get('shop/{category}/{product}', 'ShopController@displayProduct');
+Route::get('add-to-cart/{product_id}', 'CartController@addToCart');

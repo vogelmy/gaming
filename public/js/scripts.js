@@ -9,11 +9,28 @@ $(function () {
         $input.change();
         return false;
     });
+    
     $('.plus').click(function () {
         var $input = $(this).parent().find('input');
         $input.val(parseInt($input.val()) + 1);
         $input.change();
         return false;
+    });
+    
+    $('a.add-to-cart').on('click', function(e){
+        e.preventDefault();
+        var that = $(this);
+        var url = that.attr('href');
+        
+        $.ajax({
+            url:url,
+            method:'get',
+            success:function(response){
+                if(Number(response)){
+                    $('#mini-cart span').text(response);
+                } 
+            }
+        });
     });
 });
 
