@@ -9,27 +9,37 @@ $(function () {
         $input.change();
         return false;
     });
-    
+
     $('.plus').click(function () {
         var $input = $(this).parent().find('input');
         $input.val(parseInt($input.val()) + 1);
         $input.change();
         return false;
     });
-    
-    $('a.add-to-cart').on('click', function(e){
+
+    $('a.add-to-cart').on('click', function (e) {
         e.preventDefault();
         var that = $(this);
         var url = that.attr('href');
-        
+
         $.ajax({
-            url:url,
-            method:'get',
-            success:function(response){
-                if(Number(response)){
+            url: url,
+            method: 'get',
+            success: function (response) {
+                if (Number(response)) {
                     $('#mini-cart span').text(response);
-                } 
+                    $('#alert').slideDown().removeClass().addClass('alert alert-success').text('The product was added successfully.');
+                } else {
+                    $('#alert').slideDown().removeClass().addClass('alert alert-danger').text('The action could not be completed.');
+                }
             }
+        }).fail(function () {
+            $('#alert').slideDown().removeClass().addClass('alert alert-danger').text('The action could not be completed.');
+        }).always(function () {
+            window.setTimeout(function () {
+                $('#alert').slideUp();
+            }, 3000)
+
         });
     });
 });
