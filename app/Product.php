@@ -14,7 +14,7 @@ class Product extends Model {
         $product = self::where('slug', $pro)->firstOrFail();
         $product_cat = $product->category->slug;
         
-        abort_if($produt_cat !== $cat, 404);
+        abort_if($product_cat !== $cat, 404);
         return $product;
     }
 
