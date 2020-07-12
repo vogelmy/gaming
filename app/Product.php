@@ -10,12 +10,12 @@ class Product extends Model {
         return $this->belongsTo('App\Category');
     }
 
-    public static function addToCart($id) {
+    public static function addToCart($id, $qty = 1) {
         $product = self::findOrFail($id);
         \Cart::add([
             'id' => $product->id,
             'name' => $product->name,
-            'qty' => 1,
+            'qty' => $qty,
             'price' => $product->price,
             'weight' => 0
             ]);

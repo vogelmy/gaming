@@ -38,9 +38,33 @@ $(function () {
         }).always(function () {
             window.setTimeout(function () {
                 $('#alert').slideUp();
-            }, 3000)
+            }, 3000);
 
         });
+    });
+
+    $('#add-to-cart').on('submit', function (e) {
+        e.preventDefault();
+
+        var that = $(this),
+                url = that.attr('action'),
+                data = that.serialize();
+
+        $.post(url, data, function (response) {
+            if (Number(response)) {
+                $('#mini-cart span').text(response);
+                $('#alert').slideDown().removeClass().addClass('alert alert-success').text('The product was added successfully.');
+            } else {
+                $('#alert').slideDown().removeClass().addClass('alert alert-danger').text('The action could not be completed.');
+        }
+        }).fail(function () {
+            $('#alert').slideDown().removeClass().addClass('alert alert-danger').text('The action could not be completed.');
+        }).always(function () {
+            window.setTimeout(function () {
+                $('#alert').slideUp();
+            }, 3000);
+        });
+
     });
 });
 
