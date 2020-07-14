@@ -1,8 +1,12 @@
 'use strict'
 
 $(function () {
+
     $('.minus').click(function () {
         var $input = $(this).parent().find('input');
+        if ($input.val() <= 1) {
+            return false;
+        }
         var count = parseInt($input.val()) - 1;
         count = count < 1 ? 1 : count;
         $input.val(count);
@@ -56,7 +60,7 @@ $(function () {
                 $('#alert').slideDown().removeClass().addClass('alert alert-success').text('The product was added successfully.');
             } else {
                 $('#alert').slideDown().removeClass().addClass('alert alert-danger').text('The action could not be completed.');
-        }
+            }
         }).fail(function () {
             $('#alert').slideDown().removeClass().addClass('alert alert-danger').text('The action could not be completed.');
         }).always(function () {
@@ -66,5 +70,55 @@ $(function () {
         });
 
     });
+
+    $('.product-quantity').on('change', debounce(function () {
+
+        var that = $(this),
+                parent = that.parents('.update-cart'),
+                url = parent.attr('action'),
+                data = parent.serialize();
+
+        $.post(url, data, function (response) {
+            if (Number(response.cart_count)) {
+                $('#mini-cart span').text(response.cart_count);
+                $('#alert').slideDown().removeClass().addClass('alert alert-success').text('The cart was updated successfully.');
+                that.parents('tr').find('.product-total').text(response.product_total);
+                $('.cart-total').text(response.cart_total);
+            } else {
+                $('#alert').slideDown().removeClass().addClass('alert alert-danger').text('The action could not be completed.');
+            }
+        }, 'json').fail(function () {
+            $('#alert').slideDown().removeClass().addClass('alert alert-danger').text('The action could not be completed.');
+        }).always(function () {
+            window.setTimeout(function () {
+                $('#alert').slideUp();
+            }, 3000);
+        });
+    }, 500));
+
+    $('a.delete-product').on('click', function () {
+        return confirm('Are you sure that you want to delete this product?');
+    });
+    
+        $('a.delete-cart').on('click', function () {
+        return confirm('Are you sure that you want to delete the cart content?');
+    });
 });
 
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function () {
+        var context = this, args = arguments;
+        var later = function () {
+            timeout = null;
+            if (!immediate)
+                func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow)
+            func.apply(context, args);
+    };
+}
+;

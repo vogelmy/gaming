@@ -20,6 +20,9 @@ Route::get('shop', 'ShopController@displayShop');
 Route::get('shop/{category}', 'ShopController@displayCategory');
 Route::get('shop/{category}/{product}', 'ShopController@displayProduct');
 Route::get('add-to-cart/{product_id}', 'CartController@addToCart');
-Route::post('add-to-cart', 'CartController@addToCartByQty');
 
+Route::post('add-to-cart', 'CartController@addToCartByQty');
 Route::get('cart', 'CartController@displayCart');
+Route::post('update-cart', 'CartController@updateCart');
+Route::get('delete-item/{rowId}', 'CartController@deleteItem');
+Route::get('delete-cart', 'CartController@deleteCart');

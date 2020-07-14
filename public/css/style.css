@@ -45,3 +45,7 @@ input{
 #alert{
     display: none;
 }
+
+.delete{
+    width: 18px;
+}
