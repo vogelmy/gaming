@@ -25,7 +25,7 @@
                 <label for="repassword">Reenter Password</label>
                 <input type="password" class="form-control" id="repassword" name="password_confirmation">
             </div>
-            <button type="submit" class="btn btn-primary float-right">Submit</button>
+            <button type="submit" class="btn btn-primary float-right">Sign up</button>
         </form>
     </div>
 </div>

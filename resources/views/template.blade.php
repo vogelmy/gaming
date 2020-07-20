@@ -48,7 +48,7 @@
                                 <a class="nav-link" href="{{url('signup')}}">Sign up</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Login</a>
+                                <a class="nav-link" href="{{url('login')}}">Login</a>
                             </li>
                         </ul>
                         <div id="mini-cart">
@@ -69,6 +69,11 @@
                 @if (session('status'))
                 <div class="alert alert-success">
                     {{ session('status') }}
+                </div>
+                @endif
+                @if (session('status-fail'))
+                <div class="alert alert-danger">
+                    {{ session('status-fail') }}
                 </div>
                 @endif
                 @if ($errors->any())

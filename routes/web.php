@@ -30,4 +30,5 @@ Route::get('delete-cart', 'CartController@deleteCart');
 Route::get('signup', 'UserController@displaySignup');
 Route::post('signup', 'UserController@processSignup');
 
-Route::view('login', 'user.login');
+Route::get('login', 'userController@displayLogin');
+Route::post('login', 'userController@processLogin');
