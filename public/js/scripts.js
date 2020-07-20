@@ -76,7 +76,7 @@ $(function () {
         var that = $(this),
                 parent = that.parents('.update-cart'),
                 url = parent.attr('action'),
-                data = parent.serialize();
+                data = parent.serialize();    
 
         $.post(url, data, function (response) {
             if (Number(response.cart_count)) {
