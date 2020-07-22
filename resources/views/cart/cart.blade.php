@@ -45,6 +45,6 @@
 
 </table>
 <a class="delete-cart" href="{{url('delete-cart')}}">Delete Cart</a>
-<p class="clearfix"><a class="btn btn-primary float-right" href="">Place order</a></p>
+<p class="clearfix"><a class="btn btn-primary float-right" href="{{url('place-order')}}">Place order</a></p>
 @endif
 @endsection

@@ -7,31 +7,36 @@ use App\Http\Requests\UserSignup;
 use App\User;
 use App\Http\Requests\UserLogin;
 
-class UserController extends Controller{
-    
-    public function logout(Request $request){
+class UserController extends Controller {
+
+    public function logout(Request $request) {
         $name = session('name');
         $request->session()->flush();
         return redirect('shop')->with('status', 'Bye Bye ' . $name);
     }
-    
-    public function processLogin(UserLogin $request){
-        if(User::loginUser($request)){
+
+    public function processLogin(UserLogin $request) {
+        if (User::loginUser($request)) {
+            if (session('place-order-process')) {
+                $request->session()->forget('place-order-process');
+                return redirect('cart');
+            }
             return redirect('shop')->with('status', 'Welcome ' . ucfirst(session('name')) . ' enjoy your shopping');
         }
         return redirect('login')->with('status-fail', 'Wrong email or password.');
     }
-    
-    public function displayLogin(){
+
+    public function displayLogin() {
         return view('user.login');
     }
-    
-    public function processSignup(UserSignup $request){
+
+    public function processSignup(UserSignup $request) {
         User::store($request);
         return redirect('login');
     }
-    
-    public function displaySignup(){
+
+    public function displaySignup() {
         return view('user.signup');
     }
+
 }

@@ -4,21 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Order;
 
 class CartController extends Controller {
-    
-    public function deleteCart(){
+
+    public function placeOrder() {
+        if (session('id')) {
+            if (\Cart::count()) {
+                Order::store();
+                return redirect('shop')->with('status', 'Thank you for your order, your products are on their way.');
+            }
+            return redirect('cart');
+        }
+        session(['place-order-process' => true]);
+        return redirect('login')->with('status', 'To complete your order you need to be logged in. Not registered yet?
+                <a href="' . url('signup') . '">Click here</a>');
+    }
+
+    public function deleteCart() {
         \Cart::destroy();
         return redirect('shop')->with('status', 'The cart was deleted.');
     }
-    
-    public function deleteItem($rowId){
+
+    public function deleteItem($rowId) {
         \Cart::remove($rowId);
-        
+
         return redirect('cart')->with('status', 'The product was deleted from your cart.');
     }
-    
-    public function updateCart(Request $request){
+
+    public function updateCart(Request $request) {
         \Cart::update($request->rowId, $request->quantity);
         $data = [
             'cart_count' => \Cart::count(),
@@ -28,7 +42,7 @@ class CartController extends Controller {
         return json_encode($data);
     }
 
-    public function displayCart(){
+    public function displayCart() {
         \Cart::setGlobalTax(0);
         $data['items'] = \Cart::content();
         $data['total'] = \Cart::total();
@@ -46,5 +60,3 @@ class CartController extends Controller {
     }
 
 }
-
-

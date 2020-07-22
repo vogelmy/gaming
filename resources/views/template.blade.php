@@ -45,8 +45,13 @@
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             @if(session('id'))
+                            @if(session('role')===17)
                             <li class="nav-item">
-                                <a class="nav-link" href="{{url('logout')}}">{{session('name')}}, Logout</a>
+                                <a class="nav-link font-weight-bold" href="{{url('admin')}}">Dashboard</a>
+                            </li>
+                            @endif
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url('logout')}}">{{ucfirst(session('name'))}}, Logout</a>
                             </li>
                             @else
                             <li class="nav-item">
@@ -74,7 +79,7 @@
                 <div id="alert"></div>
                 @if (session('status'))
                 <div class="alert alert-success">
-                    {{ session('status') }}
+                    {!! session('status') !!}
                 </div>
                 @endif
                 @if (session('status-fail'))

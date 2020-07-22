@@ -34,3 +34,6 @@ Route::get('login', 'userController@displayLogin');
 Route::post('login', 'userController@processLogin');
 
 Route::get('logout', 'UserController@logout');
+Route::get('place-order', 'CartController@placeOrder');
+
+Route::get('admin', 'AdminController@displayDashboard');
