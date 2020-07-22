@@ -9,9 +9,15 @@ use App\Http\Requests\UserLogin;
 
 class UserController extends Controller{
     
+    public function logout(Request $request){
+        $name = session('name');
+        $request->session()->flush();
+        return redirect('shop')->with('status', 'Bye Bye ' . $name);
+    }
+    
     public function processLogin(UserLogin $request){
         if(User::loginUser($request)){
-            return redirect('shop');
+            return redirect('shop')->with('status', 'Welcome ' . ucfirst(session('name')) . ' enjoy your shopping');
         }
         return redirect('login')->with('status-fail', 'Wrong email or password.');
     }

@@ -44,12 +44,18 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
+                            @if(session('id'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url('logout')}}">{{session('name')}}, Logout</a>
+                            </li>
+                            @else
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url('signup')}}">Sign up</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url('login')}}">Login</a>
                             </li>
+                            @endif
                         </ul>
                         <div id="mini-cart">
                             <a class="text-secondary" href="{{url('cart')}}">

@@ -3,14 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Model {
 
     public static function loginUser($request) {
         $user = self::where('email', $request->email)->first();
-        if(! $user || Hash::check($request->password, $user->password)){
+        if(! $user || ! Hash::check($request->password, $user->password)){
             return false;
-        }        
+        }       
+        session([
+            'name' => $user->name,
+            'role' => $user->role_id,
+            'id' => $user->id,
+            ]);
+        return true;
     }
 
     public static function store($request) {

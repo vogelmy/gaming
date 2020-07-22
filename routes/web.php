@@ -32,3 +32,5 @@ Route::post('signup', 'UserController@processSignup');
 
 Route::get('login', 'userController@displayLogin');
 Route::post('login', 'userController@processLogin');
+
+Route::get('logout', 'UserController@logout');
