@@ -27,13 +27,16 @@ Route::post('update-cart', 'CartController@updateCart');
 Route::get('delete-item/{rowId}', 'CartController@deleteItem');
 Route::get('delete-cart', 'CartController@deleteCart');
 
-Route::get('signup', 'UserController@displaySignup');
+Route::get('signup', 'UserController@displaySignup')->middleware('is_login');
 Route::post('signup', 'UserController@processSignup');
 
-Route::get('login', 'userController@displayLogin');
+Route::get('login', 'userController@displayLogin')->middleware('is_login');
 Route::post('login', 'userController@processLogin');
 
 Route::get('logout', 'UserController@logout');
 Route::get('place-order', 'CartController@placeOrder');
 
-Route::get('admin', 'AdminController@displayDashboard');
+Route::get('admin', 'AdminController@displayDashboard')->middleware('validate_admin');
+Route::get('admin/orders', 'AdminController@displayOrders')->middleware('validate_admin');
+
+Route::resource('admin/categories', 'CategoryCrudController')->middleware('validate_admin');
