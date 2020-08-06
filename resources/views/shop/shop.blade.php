@@ -10,9 +10,11 @@
     <div class="col-md-4 mb-5">
         <div class="cat-container">
             <h3>{{strtoupper($category->name)}}</h3>
-            <a class="stretched-link" href='{{url('shop/' . $category->slug)}}'><img src="{{asset('images/categories/' . $category->image)}}"></a>
+            <a class="stretched-link" href='{{url('shop/' . $category->slug)}}'>
+                <img src="{{asset('storage/' . $category->image)}}">
+            </a>
         </div>
     </div>
-@endforeach
+    @endforeach
 </div>
 @endsection

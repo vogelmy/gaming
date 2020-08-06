@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryEdit;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Http\Requests\CategoryHandler;
@@ -45,7 +46,9 @@ class CategoryCrudController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+        $data['category'] = Category::getCategoryByID($id);
+
+        return view('admin.category.edit', $data);
     }
 
     /**
@@ -55,8 +58,9 @@ class CategoryCrudController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
-        //
+    public function update(CategoryEdit $request, $id) {
+        Category::updateCategory($id, $request);
+        return redirect('admin/categories')->with('status', 'The category was updated sucessfuly.');
     }
 
     /**
