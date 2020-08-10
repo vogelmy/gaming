@@ -9,7 +9,23 @@ class Product extends Model {
     public function category() {
         return $this->belongsTo('App\Category');
     }
+    
+    public static function store($request){
+        $product = new self();
+        $product->name = $request->name;
+        $product->slug = $request->slug;
+        $product->price = $request->price;
+        $product->description = $request->description;
+        $product->category_id = $request->category;
+        $product->image = $request->image->store('images/products','public');
+        
+        $product->save();
+    }
 
+    public static function getAll() {
+            return self::orderBy('slug')->get();
+    }
+    
     public static function addToCart($id, $qty = 1) {
         $product = self::findOrFail($id);
         \Cart::add([

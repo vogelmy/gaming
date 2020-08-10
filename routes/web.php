@@ -40,3 +40,4 @@ Route::get('admin', 'AdminController@displayDashboard')->middleware('validate_ad
 Route::get('admin/orders', 'AdminController@displayOrders')->middleware('validate_admin');
 
 Route::resource('admin/categories', 'CategoryCrudController')->middleware('validate_admin');
+Route::resource('admin/products', 'ProductCrudController')->middleware('validate_admin');
