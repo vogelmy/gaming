@@ -4,13 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+
 class Category extends Model {
 
     public function products() {
         return $this->hasMany('App\Product');
     }
 
+    public static function deleteCategory($id) {
+        $category = self::findOrFail($id);
+        Storage::disk('public')->delete($category->image);
+        self::destroy($id);
+    }
+
     public static function updateCategory($id, $request) {
+
         $category = self::findOrFail($id);
 
         $category->name = $request->name;

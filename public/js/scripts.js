@@ -76,7 +76,7 @@ $(function () {
         var that = $(this),
                 parent = that.parents('.update-cart'),
                 url = parent.attr('action'),
-                data = parent.serialize();    
+                data = parent.serialize();
 
         $.post(url, data, function (response) {
             if (Number(response.cart_count)) {
@@ -99,9 +99,21 @@ $(function () {
     $('a.delete-product').on('click', function () {
         return confirm('Are you sure that you want to delete this product?');
     });
-    
-        $('a.delete-cart').on('click', function () {
+
+    $('a.delete-cart').on('click', function () {
         return confirm('Are you sure that you want to delete the cart content?');
+    });
+
+    $('.open-modal').on('click', function () {
+        var that = $(this),
+                id = that.data('id'),
+                name = that.data('name'),
+                form = $('#delete-form'),
+                route = form.data('route');
+
+        form.attr('action', route + '/' + id);
+        $('#confirmModal .modal-body').text('Are you sure you want to delete ' + name + '?');
+
     });
 });
 

@@ -70,7 +70,8 @@ class CategoryCrudController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        //
+        Category::deleteCategory($id);
+        return redirect('admin/categories')->with('status', 'The category was deleted sucessfuly.');
     }
 
 }
