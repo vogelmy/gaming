@@ -37,7 +37,7 @@ class ProductCrudController extends Controller {
      */
     public function store(ProductHandler $request) {
         Product::store($request);
-        return redirect('admin/products')->with('status', 'The product was added successfully.');
+        return redirect('admin/products')->with('status', 'The product was added successfully');
     }
 
     /**
@@ -60,8 +60,10 @@ class ProductCrudController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
-        //
+    public function update(ProductHandler $request, $id) {
+        Product::editProduct($request);
+        
+        return redirect('admin/products')->with('status', 'The product was edited successfully');
     }
 
     /**
@@ -71,7 +73,8 @@ class ProductCrudController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        //
+        Product::deleteProduct($id);
+         return redirect('admin/products')->with('status', 'The product was deleted successfully');
     }
 
 }

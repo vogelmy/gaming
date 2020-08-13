@@ -14,6 +14,11 @@ class Category extends Model {
     public static function deleteCategory($id) {
         $category = self::findOrFail($id);
         Storage::disk('public')->delete($category->image);
+        $products = $category->products;
+        foreach ($products as $product) {
+            Product::deleteProduct($product->id);
+        }
+
         self::destroy($id);
     }
 
