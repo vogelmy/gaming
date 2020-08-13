@@ -15,7 +15,7 @@ class ProductCrudController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-    $data['products'] = Product::getAll();
+        $data['products'] = Product::getAll();
         return view('admin.product.list', $data);
     }
 
@@ -47,7 +47,10 @@ class ProductCrudController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+        $data['categories'] = Category::getCategories();
+        $data['product'] = Product::getProductById($id);
+        
+        return view('admin.product.edit', $data);
     }
 
     /**
