@@ -33,7 +33,8 @@
     </div>
 
     <div class="form-group">
-        <label for="image">Product image</label>
+        <img class="admin-thumbnail" src="{{asset('storage/' . $product->image)}}">
+        <label for="image">image</label>
         <input type="file" class="form-control-file" id="image" name="image">
     </div>
     <button type="submit" class="float-right btn btn-primary">Submit</button>

@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Role;
-use App\Http\Requests\UserSignup;
+use App\Http\Requests\PageHandler;
+use App\Page;
 
-class UserCrudController extends Controller {
+class PageCrudController extends Controller {
 
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class UserCrudController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $data['users'] = User::getUsers();
-        return view('admin.user.list', $data);
+        $data['pages'] = Page::getAll();
+        return view('admin.page.list', $data);
     }
 
     /**
@@ -25,8 +24,7 @@ class UserCrudController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $data['roles'] = Role::getAll();
-        return view('admin.user.add', $data);
+        return view('admin.page.add');
     }
 
     /**
@@ -35,9 +33,10 @@ class UserCrudController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserSignup $request) {
-        User::store($request);
-        return redirect('admin/users')->with('status', 'The user was added successfully');
+    public function store(PageHandler $request) {
+        Page::store($request);
+
+        return redirect('admin/pages')->with('status', 'The page was added successfully');
     }
 
     /**
@@ -47,9 +46,9 @@ class UserCrudController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $data['user'] = User::getUser($id);
-        $data['roles'] = Role::getAll();
-        return view('admin.user.edit', $data);
+        $data['page'] = Page::getPageById($id);
+
+        return view('admin.page.edit', $data);
     }
 
     /**
@@ -59,9 +58,9 @@ class UserCrudController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserSignup $request, $id) {
-        User::editUser($request, $id);
-        return redirect('admin/users')->with('status', 'The user was edited successfully');
+    public function update(PageHandler $request, $id) {
+        Page::editPage($request);
+        return redirect('admin/pages')->with('status', 'The page was edited successfully');
     }
 
     /**
@@ -71,13 +70,9 @@ class UserCrudController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
+        Page::deletePage($id);
 
-        if ($id == session('id')) {
-            return redirect('admin/users')->with('status-fail', 'To delete yourself please login as another user.');
-        }
-
-        User::deleteUser($id);
-        return redirect('admin/users')->with('status', 'The user was deleted successfully');
+        return redirect('admin/pages')->with('status', 'The page was deleted successfully');
     }
 
 }

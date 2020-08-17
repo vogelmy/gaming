@@ -11,6 +11,14 @@ class User extends Model {
         return $this->belongsTo('App\Role');
     }
 
+    public static function deleteUser($id) {
+        self::destroy($id);
+    }
+
+    public static function getUser($id) {
+        return self::findOrFail($id);
+    }
+
     public static function getUsers() {
         return self::orderBy('name')->get();
     }
@@ -26,6 +34,24 @@ class User extends Model {
             'id' => $user->id,
         ]);
         return true;
+    }
+
+    public static function editUser($request, $id) {
+        $user = self::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if ($user->id != session('id')) {
+            $user->role_id = $request->role ?? 35;
+        } else {
+            session(['name' => $request->name]);
+        }
+
+        if ($request->password) {
+            $user->password = bcrypt($request->password);
+        }
+
+        $user->save();
     }
 
     public static function store($request) {

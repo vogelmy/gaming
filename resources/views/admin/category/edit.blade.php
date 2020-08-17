@@ -16,7 +16,7 @@
     </div>
     <div class="form-group">
         <img class="admin-thumbnail" src="{{asset('storage/' . $category->image)}}">
-        <label for="image">Upload new image</label>
+        <label for="image">Image</label>
         <input type="file" class="form-control-file" id="image" name="image">
         <p>Leave empty to keep the original image.</p>
     </div>

@@ -1,41 +1,37 @@
 @extends('admin.template')
 @section('admin-content')
 
-<h1>Edit new Product</h1>
-<h2>In order to create a category, please <a href="{{url('admin/categories/create')}}">create at least one category</a></h2>
-<form class="clearfix" method="post" action="{{url('admin/products/' . $product->id)}}" enctype="multipart/form-data">
+<h1>Edit user</h1>
+
+<form class="clearfix" method="post" action="{{url('admin/users/' . $user->id)}}">
     @csrf
     @method('PUT')
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" name="name" value="{{old('name', $product->name)}}">
+        <input type="text" class="form-control" name="name" id="name" value="{{old('name', $user->name)}}">   
     </div>
     <div class="form-group">
-        <label for="slug">Slug</label>
-        <input type="text" class="form-control" id="slug" name="slug" value="{{old('slug', $product->slug)}}">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{old('email', $user->email)}}">
     </div>
     <div class="form-group">
-        <label for="category">Category</label>
-        <select class="form-control" id="category" name="category">
-            <option value="0">Choose category</option>
-            @foreach($categories as $category)
-            <option value="{{$category->id}}" {{$category->id == old('category', $product->category_id)?'selected':''}}>{{$category->name}}</option>
+        <label for="role">Role</label>   
+        <select class="form-control" id="role" name="role" {{$user->id == session('id')?' disabled' : ''}}>
+            <option value="0">Choose role</option>
+            @foreach($roles as $role)
+            <option value="{{$role->id}}" {{$role->id == old('role', $user->role_id)? ' selected':''}}>{{$role->name}}</option>
             @endforeach
         </select>
     </div>
     <div class="form-group">
-        <label for="price">Price</label>
-        <input type="number" class="form-control" id="price" name="price" step="0.01" value="{{old('price', $product->price)}}">
-    </div>
-    <div class="form-group">
-        <label for="slug">Description</label>
-        <textarea class="form-control" id="description" name="description" rows="6">{{old('description', $product->description)}}</textarea>
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password">
     </div>
 
     <div class="form-group">
-        <label for="image">Product image</label>
-        <input type="file" class="form-control-file" id="image" name="image">
+        <label for="repassword">Reenter Password</label>
+        <input type="password" class="form-control" id="repassword" name="password_confirmation">
     </div>
-    <button type="submit" class="float-right btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary float-right">Submit</button>
 </form>
 @endsection
