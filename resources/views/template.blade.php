@@ -102,7 +102,7 @@
         </main>
         <footer class="bg-light">
             <div class="container text-center p-5">
-                @Developed by me {{date('Y')}}
+                @Developed by Moses - {{date('Y')}}
             </div>
         </footer>
         <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>

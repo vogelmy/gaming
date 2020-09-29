@@ -6,12 +6,12 @@
 <div class="row">
     <form method="post" action="{{url()->current().'/sort-low-cart'}}">
         @csrf
-        <input type="submit" class="btn-info" value="Sort by lowest price">
+        <input type="submit" class="btn btn-info mb-5" value="Sort by lowest price">
     </form>
 
     <form method="post" action="{{url()->current().'/sort-high-cart'}}">
         @csrf
-        <input type="submit" class="btn-warning ml-3" value="Sort by highest price">
+        <input type="submit" class="btn btn-warning mb-5 ml-2" value="Sort by highest price">
     </form>
 </div>
 
