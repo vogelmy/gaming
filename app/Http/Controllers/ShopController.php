@@ -8,6 +8,20 @@ use App\Product;
 
 class ShopController extends Controller {
 
+    
+    
+    public function displayCategoryLow($slug) {
+        $data['category'] = Category::getProductsLow($slug);
+        return view('shop.comparison', $data);
+    }
+
+    public function displayCategoryHigh($slug) {
+        $data['category'] = Category::getProductsHigh($slug);
+        return view('shop.comparison', $data);
+    }
+
+    
+    
     public function displayProduct($cat, $pro) {
         $data['product'] = Product::getProduct($cat, $pro);
         return view('shop.product', $data);

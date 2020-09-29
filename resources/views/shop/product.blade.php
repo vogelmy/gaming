@@ -11,14 +11,14 @@
             <div class="number">
                 <span class="minus">-</span>
                 <input name="quantity" type="text" value="1" readonly/>
-                <span class="plus">+</span>  
+                <span class="plus">+</span> 
                 <button class="btn btn-primary" type="submit">Add</button>
             </div>
             <input name="id" type="hidden" value="{{$product->id}}">
         </form>
     </div>
     <div class="col-md-5">
-        <img src="{{asset('images/products/' . $product->image)}}">
+        <img src="{{asset('storage/' . $product->image)}}">
     </div>
 </div>
 @endsection

@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/gaming/app/Page.php</file>
-            <file>file:/C:/xampp/htdocs/gaming/app/Http/Requests/PageHandler.php</file>
-            <file>file:/C:/xampp/htdocs/gaming/app/Http/Controllers/PageCrudController.php</file>
-            <file>file:/C:/xampp/htdocs/gaming/resources/views/admin/page/add.blade.php</file>
+            <file>file:/C:/xampp/htdocs/gaming/resources/views/shop/shop.blade.php</file>
+            <file>file:/C:/xampp/htdocs/gaming/app/Http/Controllers/ShopController.php</file>
+            <file>file:/C:/xampp/htdocs/gaming/resources/views/template.blade.php</file>
+            <file>file:/C:/xampp/htdocs/gaming/resources/views/shop/product.blade.php</file>
+            <file>file:/C:/xampp/htdocs/gaming/routes/web.php</file>
         </group>
     </open-files>
 </project-private>

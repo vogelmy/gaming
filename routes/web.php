@@ -21,6 +21,9 @@ Route::get('shop/{category}', 'ShopController@displayCategory');
 Route::get('shop/{category}/{product}', 'ShopController@displayProduct');
 Route::get('add-to-cart/{product_id}', 'CartController@addToCart');
 
+Route::post('shop/{slug}/sort-low-cart', 'ShopController@displayCategoryLow');
+Route::post('shop/{slug}/sort-high-cart', 'ShopController@displayCategoryHigh');
+
 Route::post('add-to-cart', 'CartController@addToCartByQty');
 Route::get('cart', 'CartController@displayCart');
 Route::post('update-cart', 'CartController@updateCart');
@@ -30,8 +33,8 @@ Route::get('delete-cart', 'CartController@deleteCart');
 Route::get('signup', 'UserController@displaySignup')->middleware('is_login');
 Route::post('signup', 'UserController@processSignup');
 
-Route::get('login', 'userController@displayLogin')->middleware('is_login');
-Route::post('login', 'userController@processLogin');
+Route::get('login', 'UserController@displayLogin')->middleware('is_login');
+Route::post('login', 'UserController@processLogin');
 
 Route::get('logout', 'UserController@logout');
 Route::get('place-order', 'CartController@placeOrder');

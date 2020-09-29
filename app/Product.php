@@ -7,6 +7,20 @@ use Illuminate\Support\Facades\Storage;
 
 class Product extends Model {
 
+    
+    
+    public static function getProductsLowCost($slug, $id) {
+        return self::where('category_id', $id)->orderBy('price', 'asc')->get();
+    }
+    
+    public static function getProductsHighCost($slug, $id) {
+        return self::where('category_id', $id)->orderBy('price', 'desc')->get();
+    }
+    
+    
+    
+    
+ 
     public function category() {
         return $this->belongsTo('App\Category');
     }
